@@ -25,9 +25,26 @@ end
 keymap('n', '<leader>w', vscode_action('workbench.action.files.save'), { desc = 'Save' })
 keymap('n', '<C-s>', vscode_action('workbench.action.files.save'), { desc = 'Save file' })
 
--- File navigation (VSCode-specific, no override needed)
-keymap('n', '<leader>ff', vscode_action('workbench.action.quickOpen'), { desc = 'Find files' })
-keymap('n', '<leader>fg', vscode_action('workbench.action.findInFiles'), { desc = 'Find in files' })
+-- File navigation (VSCode-specific, aligned with Telescope keymaps)
+keymap('n', '<leader>sf', vscode_action('workbench.action.quickOpen'), { desc = '[S]earch [F]iles' })
+keymap('n', '<leader>sg', vscode_action('workbench.action.findInFiles'), { desc = '[S]earch by [G]rep' })
+keymap('n', '<leader>sw', vscode_action('editor.action.addSelectionToNextFindMatch'), { desc = '[S]earch current [W]ord' })
+keymap('n', '<leader>sb', vscode_action('workbench.action.showAllEditors'), { desc = '[S]earch existing [B]uffers' })
+keymap('n', '<leader><leader>', vscode_action('workbench.action.showAllEditors'), { desc = 'Find existing buffers' })
+keymap('n', '<leader><tab>', vscode_action('workbench.action.showAllEditors'), { desc = 'Find existing buffers' })
+keymap('n', '<leader>so', vscode_action('workbench.action.openRecent'), { desc = '[S]earch Recent Files' })
+keymap('n', '<leader>sr', vscode_action('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup'), { desc = '[S]earch [R]resume' })
+
+-- File explorer (aligned with neo-tree keymap)
+keymap('n', '\\', vscode_action('workbench.files.action.showActiveFileInExplorer'), { desc = 'Reveal file in explorer' })
+
+-- Note: File copy/cut/paste work with VSCode defaults in explorer:
+-- leader+y (copy), leader+x (cut), leader+p (paste)
+
+-- Git navigation (aligned with Telescope git keymaps)
+keymap('n', '<leader>gf', vscode_action('workbench.action.quickOpen'), { desc = 'Search [G]it [F]iles' })
+keymap('n', '<leader>gs', vscode_action('workbench.view.scm'), { desc = 'Search [G]it [S]tatus' })
+keymap('n', '<leader>gc', vscode_action('gitlens.showCommitsView'), { desc = 'Search [G]it [C]ommits' })
 
 -- Buffer/Editor navigation (override from base keymaps)
 keymap('n', '<S-l>', vscode_action('workbench.action.nextEditor'), { desc = 'Next editor' })
@@ -78,3 +95,11 @@ keymap('n', 'zR', vscode_action('editor.unfoldAll'), { desc = 'Open all folds' }
 -- Commenting
 keymap('n', 'gcc', vscode_action('editor.action.commentLine'), { desc = 'Comment line' })
 keymap('v', 'gc', vscode_action('editor.action.commentLine'), { desc = 'Comment selection' })
+
+-- [[ VSCode-specific plugins ]]
+-- Bootstrap lazy.nvim first
+require 'eugenep.lazy-bootstrap'
+
+require('lazy').setup({
+  require 'eugenep.plugins.surround',
+})

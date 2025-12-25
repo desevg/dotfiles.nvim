@@ -17,6 +17,7 @@ require('lazy').setup({
   require 'eugenep.plugins.undo-tree',
   require 'eugenep.plugins.theme',
   require 'eugenep.plugins.autopair',
+  require 'eugenep.plugins.surround',
   require 'eugenep.plugins.telescope',
   require 'eugenep.plugins.lualine',
   require 'eugenep.plugins.autocompletion',
